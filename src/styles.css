@@ -1,0 +1,282 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * SERRESINA design system — futuristic luxury.
+ * Black marble surfaces, molten gold accents, glassmorphism.
+ * Dark-only theme (no light mode): :root holds the dark values.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-deep: var(--gold-deep);
+  --color-onyx: var(--onyx);
+  --color-onyx-light: var(--onyx-light);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+}
+
+:root {
+  --radius: 1rem;
+  --font-display: "Montserrat", sans-serif;
+  --font-body: "Jost", sans-serif;
+
+  /* Black marble base */
+  --background: oklch(0.14 0.008 80);
+  --foreground: oklch(0.95 0.01 90);
+  --card: oklch(0.18 0.012 80);
+  --card-foreground: oklch(0.95 0.01 90);
+  --popover: oklch(0.18 0.012 80);
+  --popover-foreground: oklch(0.95 0.01 90);
+
+  /* Molten gold */
+  --primary: oklch(0.8 0.14 85);
+  --primary-foreground: oklch(0.16 0.02 80);
+  --gold: oklch(0.8 0.14 85);
+  --gold-light: oklch(0.9 0.1 90);
+  --gold-deep: oklch(0.62 0.12 75);
+
+  /* Surfaces */
+  --onyx: oklch(0.14 0.008 80);
+  --onyx-light: oklch(0.22 0.014 80);
+  --secondary: oklch(0.22 0.014 80);
+  --secondary-foreground: oklch(0.95 0.01 90);
+  --muted: oklch(0.22 0.014 80);
+  --muted-foreground: oklch(0.68 0.02 85);
+  --accent: oklch(0.24 0.03 82);
+  --accent-foreground: oklch(0.9 0.1 90);
+  --destructive: oklch(0.6 0.2 25);
+  --destructive-foreground: oklch(0.98 0.003 90);
+  --border: oklch(0.8 0.14 85 / 18%);
+  --input: oklch(0.8 0.14 85 / 22%);
+  --ring: oklch(0.8 0.14 85 / 45%);
+}
+
+.dark {
+  --background: oklch(0.14 0.008 80);
+  --foreground: oklch(0.95 0.01 90);
+  --card: oklch(0.18 0.012 80);
+  --card-foreground: oklch(0.95 0.01 90);
+  --popover: oklch(0.18 0.012 80);
+  --popover-foreground: oklch(0.95 0.01 90);
+  --primary: oklch(0.8 0.14 85);
+  --primary-foreground: oklch(0.16 0.02 80);
+  --secondary: oklch(0.22 0.014 80);
+  --secondary-foreground: oklch(0.95 0.01 90);
+  --muted: oklch(0.22 0.014 80);
+  --muted-foreground: oklch(0.68 0.02 85);
+  --accent: oklch(0.24 0.03 82);
+  --accent-foreground: oklch(0.9 0.1 90);
+  --destructive: oklch(0.6 0.2 25);
+  --destructive-foreground: oklch(0.98 0.003 90);
+  --border: oklch(0.8 0.14 85 / 18%);
+  --input: oklch(0.8 0.14 85 / 22%);
+  --ring: oklch(0.8 0.14 85 / 45%);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--gold);
+    color: var(--primary-foreground);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--onyx);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(var(--gold-deep), var(--gold));
+    border-radius: 999px;
+  }
+}
+
+/* ---------- Glassmorphism ---------- */
+
+@utility glass {
+  background: color-mix(in oklab, var(--onyx-light) 55%, transparent);
+  backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid color-mix(in oklab, var(--gold) 16%, transparent);
+}
+
+@utility glass-light {
+  background: color-mix(in oklab, var(--foreground) 4%, transparent);
+  backdrop-filter: blur(14px) saturate(130%);
+  border: 1px solid color-mix(in oklab, var(--gold) 22%, transparent);
+}
+
+/* Gold gradient text */
+@utility gold-text {
+  background: linear-gradient(
+    105deg,
+    var(--gold-deep) 0%,
+    var(--gold) 30%,
+    var(--gold-light) 50%,
+    var(--gold) 70%,
+    var(--gold-deep) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gold-shimmer 6s linear infinite;
+}
+
+/* Hover glow for interactive cards */
+@utility glow-card {
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+
+  &:hover {
+    transform: translateY(-6px);
+    border-color: color-mix(in oklab, var(--gold) 55%, transparent);
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--gold) 30%, transparent),
+      0 18px 50px -12px color-mix(in oklab, var(--gold) 35%, transparent),
+      0 0 90px -30px color-mix(in oklab, var(--gold) 45%, transparent);
+  }
+}
+
+@utility btn-gold {
+  background: linear-gradient(120deg, var(--gold-deep), var(--gold) 45%, var(--gold-light));
+  color: var(--primary-foreground);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  box-shadow: 0 10px 34px -10px color-mix(in oklab, var(--gold) 55%, transparent);
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.3s ease,
+    filter 0.3s ease;
+
+  &:hover {
+    filter: brightness(1.08);
+    transform: translateY(-2px);
+    box-shadow: 0 16px 44px -10px color-mix(in oklab, var(--gold) 70%, transparent);
+  }
+}
+
+@utility btn-ghost-gold {
+  border: 1px solid color-mix(in oklab, var(--gold) 45%, transparent);
+  color: var(--gold-light);
+  letter-spacing: 0.08em;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+
+  &:hover {
+    background: color-mix(in oklab, var(--gold) 12%, transparent);
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+}
+
+/* ---------- Scroll reveal ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .gold-text {
+    animation: none;
+  }
+}
+
+/* ---------- Keyframes ---------- */
+
+@keyframes gold-shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -24px, 0) scale(1.05);
+  }
+}
+
+@keyframes vein-pulse {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 9s ease-in-out infinite;
+}
+
+.animate-vein {
+  animation: vein-pulse 5s ease-in-out infinite;
+}
